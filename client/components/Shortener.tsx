@@ -244,7 +244,7 @@ const Shortener = () => {
       />
       {formState.values.showAdvanced && (
         <div>
-          <Flex mt={4} flexDirection={["column", "row"]}>
+          <Flex mt={3} flexDirection={["column", "row"]}>
             <Col mb={[2, 0]} ml={[0, 24]}>
               <Text
                 as="label"
