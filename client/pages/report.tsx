@@ -27,7 +27,7 @@ const ReportPage = () => {
     setMessage();
     try {
       await axios.post(`${APIv2.Links}/report`, { link: formState.values.url });
-      setMessage("Thanks for the report, we'll take actions shortly.", "green");
+      setMessage("Thanks for the report, we'll take action shortly.", "green");
       formState.clear();
     } catch (error) {
       setMessage(error?.response?.data?.error || "Couldn't send report.");
