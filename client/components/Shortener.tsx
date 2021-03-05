@@ -245,39 +245,12 @@ const Shortener = () => {
       {formState.values.showAdvanced && (
         <div>
           <Flex mt={4} flexDirection={["column", "row"]}>
-            <Col mb={[3, 0]}>
-              <Text
-                as="label"
-                {...label("domain")}
-                fontSize={[14, 15]}
-                mb={2}
-                bold
-              >
-                Domain:
-              </Text>
-              <Select
-                {...select("domain")}
-                data-lpignore
-                pl={[3, 24]}
-                pr={[3, 24]}
-                fontSize={[14, 15]}
-                height={[40, 44]}
-                width={[1, 210, 240]}
-                options={[
-                  { key: defaultDomain, value: "" },
-                  ...domains.map(d => ({
-                    key: d.address,
-                    value: d.address
-                  }))
-                ]}
-              />
-            </Col>
-            <Col mb={[3, 0]} ml={[0, 24]}>
+            <Col mb={[2, 0]} ml={[0, 24]}>
               <Text
                 as="label"
                 {...label("customurl")}
                 fontSize={[14, 15]}
-                mb={2}
+                mb={1}
                 bold
               >
                 {formState.values.domain || defaultDomain}/
