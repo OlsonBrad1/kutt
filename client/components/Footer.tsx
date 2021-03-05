@@ -40,7 +40,7 @@ const Footer: FC = () => {
               href={`mailto:${publicRuntimeConfig.CONTACT_EMAIL}`}
               title="Contact us"
             >
-              Contact us
+              Contact Us
             </ALink>
           </>
         )}
