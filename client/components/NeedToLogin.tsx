@@ -63,7 +63,7 @@ const NeedToLogin = () => (
       mb={[32, 32, 0]}
     >
       <Title>
-        Manage links, set custom <b>domains</b> and view <b>stats</b>.
+        Short links are always <b>free</b>. Create an account to manage <b>links</b> and view <b>stats</b>.
       </Title>
       <Link href="/login">
         <a href="/login" title="login / signup">

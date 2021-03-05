@@ -115,36 +115,6 @@ const Header: FC = () => {
           </a>
         </LogoImage>
         {!isMobile && (
-          <Flex
-            style={{ listStyle: "none" }}
-            display={["none", "flex"]}
-            alignItems="flex-end"
-            as="ul"
-            mb="3px"
-            m={0}
-            p={0}
-          >
-            <Li>
-              <ALink
-                href="//github.com/thedevs-network/kutt"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="GitHub"
-                fontSize={[14, 16]}
-              >
-                GitHub
-              </ALink>
-            </Li>
-            <Li>
-              <Link href="/report">
-                <ALink href="/report" title="Report abuse" fontSize={[14, 16]}>
-                  Report
-                </ALink>
-              </Link>
-            </Li>
-          </Flex>
-        )}
-      </Flex>
       <RowCenterV
         m={0}
         p={0}
