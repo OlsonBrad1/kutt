@@ -30,7 +30,7 @@ const Features = () => (
       <FeaturesItem title="Stats" icon="zap">
         Monitor your links with detailed statistics.
       </FeaturesItem>
-      <FeaturesItem title="Free &amp; open source" icon="heart">
+      <FeaturesItem title="Bonus features" icon="heart">
         Create QR codes to use on signs and handouts.
       </FeaturesItem>
     </Flex>
