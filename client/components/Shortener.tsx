@@ -245,7 +245,7 @@ const Shortener = () => {
       {formState.values.showAdvanced && (
         <div>
           <Flex mt={3} flexDirection={["column", "row"]}>
-            <Col mb={[3, 0]} ml={[0, 24]}>
+            <Col mb={[3, 0]}>
               <Text
                 as="label"
                 {...label("customurl")}
@@ -268,7 +268,7 @@ const Shortener = () => {
                 width={[1, 210, 240]}
               />
             </Col>
-            <Col width={[1, 2 / 3]} ml={[0, 26]}>
+            <Col mb={[3, 0]}>
               <Text
                 as="label"
                 {...label("password")}
@@ -288,8 +288,7 @@ const Shortener = () => {
                 placeholderSize={[13, 14]}
                 fontSize={[14, 15]}
                 height={[40, 44]}
-                width={[1]}
-                maxWidth="100%"
+                width={[1, 210, 240]}
               />
             </Col>
           </Flex>
