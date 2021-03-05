@@ -268,7 +268,7 @@ const Shortener = () => {
                 width={[1, 210, 240]}
               />
             </Col>
-            <Col mb={[3, 0]}>
+            <Col ml={[0, 24]}>
               <Text
                 as="label"
                 {...label("password")}
