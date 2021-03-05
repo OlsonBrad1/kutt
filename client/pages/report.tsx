@@ -43,11 +43,7 @@ const ReportPage = () => {
           Report abuse
         </H2>
         <Text mb={3}>
-          Report abuses, malware and phishing links to the below email address
-          or use the form. We will take actions shortly.
-        </Text>
-        <Text mb={4}>
-          {(publicRuntimeConfig.REPORT_EMAIL || "").replace("@", "[at]")}
+          Report abusive links, malware and phishing links using the form below. We will take action shortly.
         </Text>
         <Text mb={3}>
           <Span bold>URL containing malware/scam:</Span>
