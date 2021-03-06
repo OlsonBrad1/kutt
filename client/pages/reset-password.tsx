@@ -69,8 +69,7 @@ const ResetPassword: NextPage<Props> = ({ token }) => {
           Reset password
         </H2>
         <Text mb={4}>
-          If you forgot you password you can use the form below to get reset
-          password link.
+          If you forgot your password you can use the form below to get a password reset link.
         </Text>
         <Text {...label("homepage")} as="label" mt={2} fontSize={[15, 16]} bold>
           Email address
