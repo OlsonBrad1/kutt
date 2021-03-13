@@ -28,6 +28,10 @@ import Send from "./Send";
 import Key from "./Key";
 import Zap from "./Zap";
 import X from "./X";
+import Facebook from "./Facebook";
+import Email from "./Email";
+import Twitter from "./Twitter";
+import LinkedIn from "./LinkedIn";
 
 const icons = {
   arrowLeft: ArrowLeft,
@@ -53,7 +57,11 @@ const icons = {
   stop: Stop,
   trash: Trash,
   x: X,
-  zap: Zap
+  zap: Zap,
+  facebook: Facebook,
+  twitter: Twitter,
+  email: Email,
+  linkedIn: LinkedIn
 };
 
 export type Icons = keyof typeof icons;
@@ -76,52 +84,52 @@ const CustomIcon: FC<React.ComponentProps<typeof Flex>> = styled(Flex)`
     height: 100%;
 
     ${ifProp(
-      "fill",
-      css`
+  "fill",
+  css`
         fill: ${prop("fill")};
       `
-    )}
+)}
 
     ${ifProp(
-      "stroke",
-      css`
+  "stroke",
+  css`
         stroke: ${prop("stroke")};
       `
-    )}
+)}
 
     ${ifProp(
-      "strokeWidth",
-      css`
+  "strokeWidth",
+  css`
         stroke-width: ${prop("strokeWidth")};
       `
-    )}
+)}
   }
 
   ${ifProp(
-    "hoverFill",
-    css`
+  "hoverFill",
+  css`
       :hover {
         svg {
           fill: ${prop("hoverFill")};
         }
       }
     `
-  )}
+)}
 
   ${ifProp(
-    "hoverStroke",
-    css`
+  "hoverStroke",
+  css`
       :hover {
         svg {
           stroke: ${prop("stroke")};
         }
       }
     `
-  )}
+)}
 
   ${ifProp(
-    { as: "button" },
-    css`
+  { as: "button" },
+  css`
       border: none;
       outline: none;
       transition: transform 0.4s ease-out;
@@ -139,7 +147,7 @@ const CustomIcon: FC<React.ComponentProps<typeof Flex>> = styled(Flex)`
         outline: 3px solid rgba(65, 164, 245, 0.5);
       }
     `
-  )}
+)}
 `;
 
 const Icon: FC<Props> = ({ name, ...rest }) => (

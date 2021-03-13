@@ -7,7 +7,7 @@ import getConfig from "next/config";
 
 import { useStoreActions, useStoreState } from "../store";
 import { Checkbox, Select, TextInput } from "./Input";
-import { Col, RowCenterH, RowCenter } from "./Layout";
+import { Col, RowCenterH, RowCenter, ColCenter } from "./Layout";
 import { useMessage, useCopy } from "../hooks";
 import { removeProtocol } from "../utils";
 import Text, { H1, Span } from "./Text";
@@ -15,6 +15,14 @@ import { Link } from "../store/links";
 import Animation from "./Animation";
 import { Colors } from "../consts";
 import Icon from "./Icon";
+import {
+  FacebookShareButton,
+  EmailShareButton,
+  TwitterShareButton,
+  LinkedinShareButton,
+  LinkedinIcon
+} from "react-share";
+import ReactTooltip from "react-tooltip";
 
 const { publicRuntimeConfig } = getConfig();
 
@@ -36,6 +44,17 @@ const SubmitIconWrapper = styled.div`
   @media only screen and (max-width: 448px) {
     right: 8px;
     width: 40px;
+  }
+`;
+
+const SocialShareWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+
+  @media (max-width: 670px) {
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
@@ -141,42 +160,117 @@ const Shortener = () => {
       duration="0.4s"
       style={{ position: "relative" }}
     >
-      {copied ? (
-        <Animation offset="10px" duration="0.2s" alignItems="center">
-          <Icon
-            size={[30, 35]}
-            py={0}
-            px={0}
-            mr={3}
-            p={["4px", "5px"]}
-            name="check"
-            strokeWidth="3"
-            stroke={Colors.CheckIcon}
-          />
-        </Animation>
-      ) : (
-        <Animation offset="-10px" duration="0.2s">
-          <CopyToClipboard text={link.link} onCopy={setCopied}>
-            <Icon
-              as="button"
-              py={0}
-              px={0}
-              mr={3}
-              size={[30, 35]}
-              p={["6px", "7px"]}
-              name="copy"
-              strokeWidth="2.5"
-              stroke={Colors.CopyIcon}
-              backgroundColor={Colors.CopyIconBg}
-            />
-          </CopyToClipboard>
-        </Animation>
-      )}
-      <CopyToClipboard text={link.link} onCopy={setCopied}>
-        <ShortenedLink fontSize={[24, 26, 30]} pb="2px" light>
-          {removeProtocol(link.link)}
-        </ShortenedLink>
-      </CopyToClipboard>
+      <SocialShareWrapper>
+        <CopyToClipboard text={link.link} onCopy={setCopied}>
+          <ShortenedLink fontSize={[24, 26, 30]} pb="2px" light>
+            {removeProtocol(link.link)}
+          </ShortenedLink>
+        </CopyToClipboard>
+        <Flex justifyContent="center" alignItems="center" my={3}>
+          {copied ? (
+            <Animation offset="10px" duration="0.2s" alignItems="center">
+              <Icon
+                size={[30, 35]}
+                py={0}
+                px={0}
+                ml={3}
+                p={["4px", "5px"]}
+                name="check"
+                strokeWidth="3"
+                stroke={Colors.CheckIcon}
+              />
+            </Animation>
+          ) : (
+            <Animation offset="-10px" duration="0.2s">
+              <CopyToClipboard
+                text={link.link}
+                onCopy={setCopied}
+                data-tip
+                data-for="CopyURL"
+              >
+                <Icon
+                  as="button"
+                  py={0}
+                  px={0}
+                  ml={3}
+                  size={[30, 35]}
+                  p={["6px", "7px"]}
+                  name="copy"
+                  strokeWidth="2.5"
+                  stroke={Colors.CopyIcon}
+                  backgroundColor={Colors.CopyIconBg}
+                />
+              </CopyToClipboard>
+              <ReactTooltip
+                id="CopyURL"
+                place="top"
+                effect="solid"
+                type="success"
+              >
+                <span>Copy!</span>
+              </ReactTooltip>
+            </Animation>
+          )}
+
+          <FacebookShareButton
+            url={link.link}
+            quote={link.link}
+            hashtag="#seeHome"
+            style={{ outline: "none" }}
+            data-tip
+            data-for="FacebookShareButton"
+          >
+            <Icon ml={3} size={[30, 30]} name="facebook" />
+          </FacebookShareButton>
+          <ReactTooltip id="FacebookShareButton" place="top" effect="solid">
+            <span>Share on Facebook!</span>
+          </ReactTooltip>
+
+
+          <TwitterShareButton
+            url={link.link}
+            via="seeHo.me"
+            style={{ outline: "none" }}
+            data-tip
+            data-for="TwitterShareButton"
+          >
+            <Icon ml={3} size={[30, 30]} name="twitter" />
+          </TwitterShareButton>
+          <ReactTooltip id="TwitterShareButton" place="top" effect="solid">
+            <span>Share on Twitter</span>
+          </ReactTooltip>
+
+          <EmailShareButton
+            url={link.link}
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
+            onClick={() => { }}
+            subject="I'd like you to see this home"
+            body={`I found a home you may be interested in seeing: `}
+            style={{ outline: "none" }}
+            openShareDialogOnClick={true}
+            data-tip
+            data-for="EmailShareButton"
+          >
+            <Icon ml={3} size={[30, 30]} name="email" />
+          </EmailShareButton>
+          <ReactTooltip id="EmailShareButton" place="top" effect="solid">
+            <span>Send via Email</span>
+          </ReactTooltip>
+          <LinkedinShareButton
+            url={link.link}
+            data-tip
+            data-for="LinkedinShareButton"
+            style={{ outline: "none" }}
+            summary={"SeeHome"}
+            title={link.link}
+          >
+            <Icon ml={3} size={[30, 30]} name="linkedIn" />
+          </LinkedinShareButton>
+          <ReactTooltip id="LinkedinShareButton" place="top" effect="solid">
+            <span>Share on LinkedIn</span>
+          </ReactTooltip>
+        </Flex>
+      </SocialShareWrapper>
     </Animation>
   );
 
@@ -186,6 +280,7 @@ const Shortener = () => {
         {title}
         {result}
       </RowCenterH>
+
       <Flex
         as="form"
         id="shortenerform"
@@ -244,8 +339,35 @@ const Shortener = () => {
       />
       {formState.values.showAdvanced && (
         <div>
-          <Flex mt={3} flexDirection={["column", "row"]}>
+          <Flex mt={4} flexDirection={["column", "row"]}>
             <Col mb={[3, 0]}>
+              <Text
+                as="label"
+                {...label("domain")}
+                fontSize={[14, 15]}
+                mb={2}
+                bold
+              >
+                Domain:
+              </Text>
+              <Select
+                {...select("domain")}
+                data-lpignore
+                pl={[3, 24]}
+                pr={[3, 24]}
+                fontSize={[14, 15]}
+                height={[40, 44]}
+                width={[1, 210, 240]}
+                options={[
+                  { key: defaultDomain, value: "" },
+                  ...domains.map(d => ({
+                    key: d.address,
+                    value: d.address
+                  }))
+                ]}
+              />
+            </Col>
+            <Col mb={[3, 0]} ml={[0, 24]}>
               <Text
                 as="label"
                 {...label("customurl")}
