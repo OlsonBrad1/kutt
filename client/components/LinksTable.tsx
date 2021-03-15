@@ -26,6 +26,7 @@ import Table from "./Table";
 import ALink from "./ALink";
 import Modal from "./Modal";
 import Icon from "./Icon";
+import ReactTooltip from "react-tooltip";
 
 const { publicRuntimeConfig } = getConfig();
 
@@ -33,13 +34,13 @@ const Tr = styled(Flex).attrs({ as: "tr", px: [12, 12, 2] })``;
 const Th = styled(Flex)``;
 Th.defaultProps = { as: "th", flexBasis: 0, py: [12, 12, 3], px: [12, 12, 3] };
 
-const Td = styled(Flex)<{ withFade?: boolean }>`
+const Td = styled(Flex) <{ withFade?: boolean }>`
   position: relative;
   white-space: nowrap;
 
   ${ifProp(
-    "withFade",
-    css`
+  "withFade",
+  css`
       :after {
         content: "";
         position: absolute;
@@ -58,7 +59,7 @@ const Td = styled(Flex)<{ withFade?: boolean }>`
         );
       }
     `
-  )}
+)}
 `;
 Td.defaultProps = {
   as: "td",
@@ -130,8 +131,8 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
       description: link.description,
       expire_in: link.expire_in
         ? ms(differenceInMilliseconds(new Date(link.expire_in), new Date()), {
-            long: true
-          })
+          long: true
+        })
         : ""
     },
     { withIds: true }
@@ -284,24 +285,44 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
                   stroke={Colors.PieIcon}
                   strokeWidth="2.5"
                   backgroundColor={Colors.PieIconBg}
+                  data-tip
+                  data-for="pieChart"
                 />
               </ALink>
             </Link>
           )}
+          <ReactTooltip id="pieChart" place="bottom" effect="solid">
+            <span>See pie Charts</span>
+          </ReactTooltip>
           <Action
             name="qrcode"
             stroke="none"
             fill={Colors.QrCodeIcon}
             backgroundColor={Colors.QrCodeIconBg}
             onClick={() => setQRModal(true)}
+            data-tip
+            data-for="qrcode"
           />
+          <ReactTooltip id="qrcode" place="bottom" effect="solid" type="info">
+            <span>Share via Qrcode</span>
+          </ReactTooltip>
           <Action
             name="editAlt"
             strokeWidth="2.5"
             stroke={Colors.EditIcon}
             backgroundColor={Colors.EditIconBg}
             onClick={toggleEdit}
+            data-tip
+            data-for="editAlt"
           />
+          <ReactTooltip
+            id="editAlt"
+            place="bottom"
+            effect="solid"
+            type="warning"
+          >
+            <span>Edit Link!</span>
+          </ReactTooltip>
           {isAdmin && !link.banned && (
             <Action
               name="stop"
@@ -309,8 +330,13 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
               stroke={Colors.StopIcon}
               backgroundColor={Colors.StopIconBg}
               onClick={() => setBanModal(true)}
+              data-tip
+              data-for="stop"
             />
           )}
+          <ReactTooltip id="stop" place="bottom" effect="solid">
+            <span>stop Link!</span>
+          </ReactTooltip>
           <Action
             mr={0}
             name="trash"
@@ -318,7 +344,12 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
             stroke={Colors.TrashIcon}
             backgroundColor={Colors.TrashIconBg}
             onClick={() => setDeleteModal(index)}
+            data-tip
+            data-for="trash"
           />
+          <ReactTooltip id="trash" place="bottom" effect="solid" type="error">
+            <span>Remove Link!</span>
+          </ReactTooltip>
         </Td>
       </Tr>
       {showEdit && (
