@@ -19,11 +19,9 @@ import {
   FacebookShareButton,
   EmailShareButton,
   TwitterShareButton,
-  LinkedinShareButton,
-  LinkedinIcon
+  LinkedinShareButton
 } from "react-share";
-import ReactTooltip from "react-tooltip";
-
+import Tooltip from "./Tooltip";
 const { publicRuntimeConfig } = getConfig();
 
 const SubmitIconWrapper = styled.div`
@@ -201,14 +199,9 @@ const Shortener = () => {
                   backgroundColor={Colors.CopyIconBg}
                 />
               </CopyToClipboard>
-              <ReactTooltip
-                id="CopyURL"
-                place="top"
-                effect="solid"
-                type="success"
-              >
-                <span>Copy!</span>
-              </ReactTooltip>
+              <Tooltip id="CopyURL" effect="solid">
+                <span>Copy</span>
+              </Tooltip>
             </Animation>
           )}
 
@@ -222,9 +215,9 @@ const Shortener = () => {
           >
             <Icon ml={3} size={[30, 30]} name="facebook" />
           </FacebookShareButton>
-          <ReactTooltip id="FacebookShareButton" place="top" effect="solid">
-            <span>Share on Facebook!</span>
-          </ReactTooltip>
+          <Tooltip id="FacebookShareButton" effect="solid" >
+            <span>Share on Facebook</span>
+          </Tooltip>
 
 
           <TwitterShareButton
@@ -236,26 +229,10 @@ const Shortener = () => {
           >
             <Icon ml={3} size={[30, 30]} name="twitter" />
           </TwitterShareButton>
-          <ReactTooltip id="TwitterShareButton" place="top" effect="solid">
+          <Tooltip id="TwitterShareButton" effect="solid">
             <span>Share on Twitter</span>
-          </ReactTooltip>
+          </Tooltip>
 
-          <EmailShareButton
-            url={link.link}
-            // eslint-disable-next-line @typescript-eslint/no-empty-function
-            onClick={() => { }}
-            subject="I'd like you to see this home"
-            body={`I found a home you may be interested in seeing: `}
-            style={{ outline: "none" }}
-            openShareDialogOnClick={true}
-            data-tip
-            data-for="EmailShareButton"
-          >
-            <Icon ml={3} size={[30, 30]} name="email" />
-          </EmailShareButton>
-          <ReactTooltip id="EmailShareButton" place="top" effect="solid">
-            <span>Send via Email</span>
-          </ReactTooltip>
           <LinkedinShareButton
             url={link.link}
             data-tip
@@ -266,9 +243,27 @@ const Shortener = () => {
           >
             <Icon ml={3} size={[30, 30]} name="linkedIn" />
           </LinkedinShareButton>
-          <ReactTooltip id="LinkedinShareButton" place="top" effect="solid">
+          <Tooltip id="LinkedinShareButton" effect="solid">
             <span>Share on LinkedIn</span>
-          </ReactTooltip>
+          </Tooltip>
+
+          <EmailShareButton
+            url={link.link}
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
+            onClick={() => { }}
+            subject="I'd like you to see this home"
+            body={`I found a home you may be interested in seeing: `}
+            style={{ outline: "none", marginTop: "10px" }}
+            openShareDialogOnClick={true}
+            data-tip
+            data-for="EmailShareButton"
+          >
+            <Icon ml={3} size={[30, 30]} name="email" />
+          </EmailShareButton>
+          <Tooltip id="EmailShareButton" effect="solid">
+            <span>Send via Email</span>
+          </Tooltip>
+
         </Flex>
       </SocialShareWrapper>
     </Animation>
