@@ -26,7 +26,6 @@ import Table from "./Table";
 import ALink from "./ALink";
 import Modal from "./Modal";
 import Icon from "./Icon";
-import ReactTooltip from "react-tooltip";
 
 const { publicRuntimeConfig } = getConfig();
 
@@ -286,14 +285,14 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
                   strokeWidth="2.5"
                   backgroundColor={Colors.PieIconBg}
                   data-tip
-                  data-for="pieChart"
+                  data-for={`${index}-tooltip-pieChart`}
                 />
               </ALink>
             </Link>
           )}
-          <ReactTooltip id="pieChart" place="bottom" effect="solid">
-            <span>See pie Charts</span>
-          </ReactTooltip>
+          <Tooltip id={`${index}-tooltip-pieChart`} effect="solid">
+            <span>Stats</span>
+          </Tooltip>
           <Action
             name="qrcode"
             stroke="none"
@@ -301,11 +300,11 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
             backgroundColor={Colors.QrCodeIconBg}
             onClick={() => setQRModal(true)}
             data-tip
-            data-for="qrcode"
+            data-for={`${index}-tooltip-qrcode`}
           />
-          <ReactTooltip id="qrcode" place="bottom" effect="solid" type="info">
-            <span>Share via Qrcode</span>
-          </ReactTooltip>
+          <Tooltip id={`${index}-tooltip-qrcode`} effect="solid">
+            <span>QR Code</span>
+          </Tooltip>
           <Action
             name="editAlt"
             strokeWidth="2.5"
@@ -313,16 +312,11 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
             backgroundColor={Colors.EditIconBg}
             onClick={toggleEdit}
             data-tip
-            data-for="editAlt"
+            data-for={`${index}-tooltip-editAlt`}
           />
-          <ReactTooltip
-            id="editAlt"
-            place="bottom"
-            effect="solid"
-            type="warning"
-          >
-            <span>Edit Link!</span>
-          </ReactTooltip>
+          <Tooltip id={`${index}-tooltip-editAlt`} effect="solid">
+            <span>Edit Link</span>
+          </Tooltip>
           {isAdmin && !link.banned && (
             <Action
               name="stop"
@@ -331,12 +325,12 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
               backgroundColor={Colors.StopIconBg}
               onClick={() => setBanModal(true)}
               data-tip
-              data-for="stop"
+              data-for={`${index}-tooltip-stop`}
             />
           )}
-          <ReactTooltip id="stop" place="bottom" effect="solid">
-            <span>stop Link!</span>
-          </ReactTooltip>
+          <Tooltip id={`${index}-tooltip-stop`} effect="solid">
+            <span>Report Link</span>
+          </Tooltip>
           <Action
             mr={0}
             name="trash"
@@ -345,11 +339,11 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
             backgroundColor={Colors.TrashIconBg}
             onClick={() => setDeleteModal(index)}
             data-tip
-            data-for="trash"
+            data-for={`${index}-tooltip-trash`}
           />
-          <ReactTooltip id="trash" place="bottom" effect="solid" type="error">
-            <span>Remove Link!</span>
-          </ReactTooltip>
+          <Tooltip id={`${index}-tooltip-trash`} effect="solid" type="error">
+            <span>Delete</span>
+          </Tooltip>
         </Td>
       </Tr>
       {showEdit && (
