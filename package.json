@@ -1,7 +1,7 @@
 {
-  "name": "kutt",
+  "name": "SeeHo.me",
   "version": "2.7.2",
-  "description": "Modern URL shortener.",
+  "description": "Real Estate URL Shortener",
   "main": "./production-server/server.js",
   "scripts": {
     "test": "mocha --compilers js:@babel/register ./client/**/__test__/*.js",
